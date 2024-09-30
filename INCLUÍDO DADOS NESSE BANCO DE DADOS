@@ -1,0 +1,203 @@
+-- Processo de  inserir os dados em cada tabela  
+
+-- inserindo valores tabela pessoa 
+INSERT INTO tbl_pessoa (nome, sexo, email, data_registro, data_nascimento, CPF, RG)  
+VALUES  
+    ('Lucas', 'Masculino', 'lucas.morais@gmail.com', '2024-09-28', '2002-03-03', '456.789.520-58', '87.459.485-8'), 
+    ('Samira', 'feminino', 'samira@gmail.com', '2024-09-30', '2001-05-09', '789.528.741-91', '78.112.996-2'), 
+    ('Fernando', 'masculino', 'fernando@gmail.com', '2024-01-08', '1980-03-10', '782.952.995-78', '10.455.525-9'), 
+    ('Jessica', 'feminino', 'jessica@gmail.com', '2024-05-09', '1985-07-15', '442.446.295-18', '24.555.565-8'); 
+
+-- inserindo valores tabela endereço 
+INSERT INTO tbl_endereco (logradouro, CEP, bairro, cidade, estado, id_pessoa) 
+VALUES 
+    ('Rua', '05784-400', 'Rosangela', 'são paulo', 'são paulo', 1), 
+    ('Rua', '34784-700', 'Aventor', 'são paulo', 'são paulo', 2), 
+    ('Avenida', '33484-156', 'Daniel', 'são paulo', 'são paulo', 3), 
+    ('Rua', '38528-400', 'Jardim Rosa', 'são paulo', 'são paulo', 4); 
+
+-- inserindo valores tabela telefone 
+INSERT INTO tbl_telefone (numero, id_pessoa) 
+VALUES 
+    ('(11) 96385-8514', 1), 
+    ('(11) 95203-7841', 2), 
+    ('(11) 92811-1218', 3), 
+    ('(11) 92343-3749', 3), 
+    ('(11) 94833-3438', 4); 
+
+-- inserindo valores tabela professor 
+INSERT INTO tbl_professor (especializacao, salario, CFEP, id_pessoa) 
+VALUES 
+    ('segurança da informação', '4000', '78542684', 3), 
+    ('banco de dados', '5500', '33265580', 4);     
+    
+-- inserindo valores tabela coordenadores 
+INSERT INTO tbl_coordenadores (quantidade_cursos, data_coordenador, id_professor) 
+VALUES 
+    ('2', '2024-09-01', 1); 
+
+-- inserindo valores tabela materia 
+INSERT INTO tbl_materia (nome_materia, emenda, tempo_materia, pre_requisito, plano_ensino, frequencia_minima, id_professor) 
+VALUES 
+    ('politicas de segurança', 'confidencialidade, integridade e disponibilidade', '1 semestre', 'nenhum', 'trabalhos e provas', '80%', 1), 
+    ('criptografia', 'quebra de chaves', '1 semestre', 'nenhum', 'trabalhos e provas', '80%', 1), 
+    ('DATA BASE', 'estruturação de banco de dados','2 semestres', 'nenhum', 'trabalhos e portfólio', '80%', 2); 
+
+-- inserindo valores tabela curso 
+INSERT INTO tbl_curso (nome_curso, carga_horaria, nivel, id_materia, id_coordenadores) 
+VALUES 
+    ('Gestão de tecnologia da informação', '4 semestre', 'tecnólogo', 1, 1), 
+    ('analise deselvimento de sistemas', '5 semestre', 'tecnólogo', 2, 1); 
+
+-- inserindo valores tabela campus 
+INSERT INTO tbl_campus (nome_campus, id_curso) 
+VALUES 
+    ('Taboão', 1), 
+    ('Santo amaro', 1), 
+    ('Santo amaro', 2), 
+    ('Paulista', 2); 
+
+-- inserindo valores tabela modalidade 
+INSERT INTO tbl_modalidade (tipo, periodo, metodologia, id_curso) 
+VALUES 
+    ('Presencial', 'diurno','Faculdade trilha o caminho para o aluno', 1), 
+    ('Presencial', 'noturno','Faculdade trilha o caminho para o aluno', 1), 
+    ('EAD', 'livre', 'Aluno trilha seu caminho', 2); 
+
+ -- inserindo valores tabela turma 
+INSERT INTO tbl_turma (semestre, turno, ano, id_professor) 
+VALUES 
+    ('1 semestre', 'Diurno', '2024', 1), 
+    ('1 semestre', 'Noturno', '2024', 1), 
+    ('1 semestre', 'Livre', '2024', 2); 
+
+-- inserindo valores tabela aluno 
+INSERT INTO tbl_aluno (matricula, desconto, id_pessoa, id_curso) 
+VALUES 
+    ('85565', '50%', 1, 2), 
+    ('97762', '70%', 2, 1); 
+
+-- inserindo valores tabela aluno e turma 
+INSERT INTO tbl_aluno_e_turma (id_aluno, id_turma) 
+VALUES 
+    (1, 1), 
+    (2, 2); 
+
+-- inserindo valores tabela nota 
+INSERT INTO tbl_nota (valor, data_avaliacao, tipo_nota, id_aluno, id_turma, id_materia) 
+VALUES 
+    ('6.5', '2024-11-30', 'prova', 1, 1, 1), 
+    ('9.5', '2024-11-29', 'prova', 1, 1, 2), 
+    ('10', '2024-11-30', 'prova', 2, 2, 3); 
+
+-- inserindo valores tabela perfil - aluno 
+INSERT INTO tbl_perfil(usuario, senha, nivel_acesso, data_criacao, tipo_usuario, email_recuperacao, ultimo_acesso, id_aluno) 
+VALUES 
+    ('lucas.morais','l#c@sFec@F209','estudante','2024-09-28','padrão', 'não tem', '2024-11-30', 1), 
+    ('samira.santos', 's@mi7@Fec@aF80', 'estudante', '2024-09-30', 'padrão', 'samira.santos@gmail.com', '2024-11-29', 2); 
+
+-- inserindo valores tabela perfil - professor 
+INSERT INTO tbl_perfil(usuario, senha, nivel_acesso, data_criacao, tipo_usuario, email_recuperacao, ultimo_acesso, id_professor) 
+VALUES 
+    ('fernando.luiz', 'F09Lu@$s', 'professor', '2024-01-08', 'adm', 'fernando.luiz@gmail.com', '2024-10-30', 1), 
+    ('jessica.juliana', 'JU09@3je8', 'professor', '2024-05-09', 'padrão', 'não tem', '2024-10-30', 1); 
+ 
+-- selecionar os registros inseridos  
+SELECT * FROM tbl_pessoa ORDER BY nome asc; -- (asc/ deixa em ordem crescente a tabela); 
+SELECT * FROM tbl_endereco; 
+SELECT * FROM tbl_telefone; 
+SELECT * FROM tbl_professor; 
+SELECT * FROM tbl_coordenadores; 
+SELECT * FROM tbl_materia; 
+SELECT * FROM tbl_curso; 
+SELECT * FROM tbl_campus ORDER BY nome_campus asc; -- (asc/ deixa em ordem crescente a tabela); 
+SELECT * FROM tbl_modalidade; 
+SELECT * FROM tbl_turma; 
+SELECT * FROM tbl_aluno; 
+SELECT * FROM tbl_aluno_e_turma; 
+SELECT * FROM tbl_nota; 
+SELECT * FROM tbl_perfil; 
+
+-- Listar determinadas pessoas que se registraram na faculdade nesse semestre 
+SELECT * FROM tbl_pessoa WHERE data_registro BETWEEN '2024-06-01' and '2024-12-31'; 
+
+-- Listar quem foi o aluno que tirou nota baixa na prova  
+SELECT * FROM tbl_nota WHERE valor <= 7; 
+
+-- relacionando tabela pessoa , número e telefone  
+SELECT  
+    tbl_pessoa.nome,  
+    tbl_pessoa.CPF, 
+    tbl_telefone.numero, 
+    tbl_endereco.logradouro,  
+    tbl_endereco.bairro,  
+    tbl_endereco.CEP,  
+    tbl_endereco.cidade 
+FROM  
+    tbl_pessoa  
+INNER JOIN  
+    tbl_telefone ON tbl_pessoa.id = tbl_telefone.id_pessoa 
+INNER JOIN  
+    tbl_endereco ON tbl_pessoa.id = tbl_endereco.id_pessoa 
+ORDER BY nome ASC   
+; 
+ 
+-- relacionando tabela pessoa com aluno  
+SELECT  
+    tbl_pessoa.nome,  
+    tbl_pessoa.CPF, 
+    tbl_aluno.matricula, 
+    tbl_aluno.desconto 
+FROM  
+    tbl_pessoa  
+INNER JOIN  
+    tbl_aluno ON tbl_pessoa.id = tbl_aluno.id_pessoa 
+ORDER BY nome ASC   
+; 
+-- relacionando tabela pessoa com professor 
+
+SELECT  
+    tbl_pessoa.nome,  
+    tbl_pessoa.CPF, 
+    tbl_professor.especializacao, 
+    tbl_professor.salario, 
+    tbl_professor.CFEP 
+FROM  
+    tbl_pessoa  
+INNER JOIN  
+    tbl_professor ON tbl_pessoa.id = tbl_professor.id_pessoa 
+ORDER BY nome ASC   
+; 
+
+-- relacionando tabela matéria e curso  
+
+SELECT  
+    tbl_curso.nome_curso,  
+    tbl_curso.carga_horaria, 
+    tbl_curso.nivel, 
+    tbl_materia.nome_materia, 
+    tbl_materia.pre_requisito, 
+    tbl_materia.emenda 
+FROM  
+    tbl_materia 
+INNER JOIN  
+    tbl_curso ON  tbl_materia.id = tbl_curso.id_materia 
+ORDER BY nome_curso ASC   
+;   
+
+-- relacionando tabela curso, modalidade e campus. 
+SELECT  
+    tbl_curso.nome_curso,  
+    tbl_curso.carga_horaria, 
+    tbl_curso.nivel, 
+    tbl_modalidade.tipo, 
+    tbl_modalidade.periodo, 
+    tbl_campus.nome_campus 
+FROM  
+    tbl_curso 
+INNER JOIN  
+    tbl_modalidade ON  tbl_curso.id = tbl_modalidade.id_curso 
+INNER JOIN  
+    tbl_campus ON  tbl_curso.id = tbl_campus.id_curso 
+ORDER BY nome_curso ASC  
+; 
